@@ -1,7 +1,7 @@
 services:
   minecraft-server:
     image: local/mcserver
-    container_name: mc0
+    container_name: mcserver
     restart: unless-stopped
     tty: true
     stdin_open: true
