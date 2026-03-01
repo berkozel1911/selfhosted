@@ -1,0 +1,25 @@
+services:
+  minecraft-server:
+    image: local/mcserver
+    container_name: mc0
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    ports:
+      - 25565:25565
+    volumes:
+      - /srv/mcserver-data:/mc
+    networks:
+      mcipv6:
+        ipv6_address: fd00:dead:beef::10
+
+networks:
+  mcipv6:
+    enable_ipv6: true
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16
+          gateway: 172.25.0.1
+        - subnet: fd00:dead:beef::/64
+          gateway: fd00:dead:beef::1
